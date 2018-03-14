@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Category {
     @Id
-    private String id;
+    private Long id;
 
     private int rank;
 
@@ -21,14 +21,14 @@ public class Category {
         this.title = title;
     }
 
-    public Category(String id, int rank, String title) {
+    public Category(Long id, int rank, String title) {
         super();
         this.id = id;
         this.rank = rank;
         this.title = title;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -47,4 +47,10 @@ public class Category {
     public void setTitle(String title) {
         this.title = title;
     }
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", rank=" + rank + ", title=" + title + "]";
+	}
+    
 }
