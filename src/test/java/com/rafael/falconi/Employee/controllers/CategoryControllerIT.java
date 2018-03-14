@@ -18,6 +18,7 @@ public class CategoryControllerIT {
 	
 	@Test
 	public void testReadCategoryVarious() {
+		System.out.println(this.categoryController.readCategory("1").toString());
 		System.out.println(this.categoryController.readCategoryAll().toString());
 	}
 

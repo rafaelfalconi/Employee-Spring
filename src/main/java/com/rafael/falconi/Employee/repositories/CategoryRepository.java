@@ -10,7 +10,7 @@ import com.rafael.falconi.Employee.dtos.CategoryDto;
 
 public interface CategoryRepository extends MongoRepository<Category, String>{
 	
-	public Category findById(Long id);
+	public Category findById(String id);
 	
 	@Query(value = "{'id' : ?0}", fields = "{'id':1,'rank' : 1, 'title' : 'title'}")
 	List<CategoryDto> findCategoryAll();

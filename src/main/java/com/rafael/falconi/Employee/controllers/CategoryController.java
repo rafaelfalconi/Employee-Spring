@@ -16,7 +16,7 @@ public class CategoryController {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
-	public Optional<CategoryDto> readCategory(Long id) {
+	public Optional<CategoryDto> readCategory(String id) {
 		Category categoryBD = this.categoryRepository.findById(id);
 		if (categoryBD == null) {
 			return Optional.empty();
