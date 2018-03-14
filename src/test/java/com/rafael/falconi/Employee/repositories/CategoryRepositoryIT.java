@@ -22,7 +22,7 @@ public class CategoryRepositoryIT {
 	public void populate() {
 		this.categoryRepository.deleteAll();
 		for(int i=0;i<5;i++) {
-			this.categoryRepository.save(new Category(Long.valueOf(i),i,"rank"+i));
+			this.categoryRepository.save(new Category(""+i,i,"rank"+i));
 		}
 	}
 	@Test
