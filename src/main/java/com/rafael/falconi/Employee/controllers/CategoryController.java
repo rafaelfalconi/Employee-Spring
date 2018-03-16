@@ -16,6 +16,11 @@ public class CategoryController {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+	public void createCategory(CategoryDto categoryDto) {
+		Category category = new Category(categoryDto.getId(), categoryDto.getRank(), categoryDto.getTitle());
+		this.categoryRepository.save(category);
+	}
+
 	public Optional<CategoryDto> readCategory(String id) {
 		Category categoryBD = this.categoryRepository.findById(id);
 		if (categoryBD == null) {
