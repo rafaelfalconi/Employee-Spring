@@ -2,7 +2,7 @@ package com.rafael.falconi.Employee.dtos;
 
 import com.rafael.falconi.Employee.documents.Category;
 
-public class CategoryDto extends CategoryMinimunDto{
+public class CategoryDto {
 	private String id;
 
 	private int rank;
@@ -11,11 +11,13 @@ public class CategoryDto extends CategoryMinimunDto{
 
 	public CategoryDto() {
 		// Empty for framework
-	}	
+	}
 
 	public CategoryDto(Category category) {
-		super(category.getId(), category.getTitle());
-		this.rank=category.getRank();
+		super();
+		this.id = category.getId();
+		this.title = category.getTitle();
+		this.rank = category.getRank();
 	}
 
 	public CategoryDto(String id, int rank, String title) {
@@ -53,6 +55,5 @@ public class CategoryDto extends CategoryMinimunDto{
 	public String toString() {
 		return "CategoryDto [id=" + id + ", rank=" + rank + ", title=" + title + "]";
 	}
-	
-	
+
 }
