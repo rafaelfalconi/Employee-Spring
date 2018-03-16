@@ -14,8 +14,7 @@ public class RestService {
 	@Value("${server.contextPath}")
 	private String contextPath;
 
-	@Value("${rafael.databaseSeeder.ymlFileName}")
-	private String testFile;
+	
 
 	private int port() {
 		return Integer.parseInt(environment.getProperty("local.server.port"));
