@@ -46,7 +46,7 @@ public class CategoryResourceFunctionalTesting {
 	@Test
 	public void testCategoryAll() {
 		String json = restService.restBuilder(new RestBuilder<String>()).clazz(String.class)
-				.path(CategoryResource.CATEGORIES).post().build();
+				.path(CategoryResource.CATEGORIES).get().build();
 		System.out.println("------------>" + json);
 	}
 
