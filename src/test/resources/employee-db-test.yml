@@ -1,11 +1,9 @@
-
 # RECOMENDABLE SOLO AÑADIR 
-
     
 # Category
 categoryList:
   - &cat0
-    id: 1515L
+    id: 1
     rank: 15
     title: categoria
     

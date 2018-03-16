@@ -4,25 +4,34 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rafael.falconi.Employee.controllers.CategoryController;
 import com.rafael.falconi.Employee.dtos.CategoryDto;
+import com.rafael.falconi.Employee.resources.exeptions.CategoryCodeNotFoundException;
 
 @RestController
-@RequestMapping
+@RequestMapping(CategoryResource.CATEGORIES)
 public class CategoryResource {
-	
+
 	public static final String CATEGORIES = "/categories";
-	
+
 	public static final String ID = "/{id}";
-	
+
 	@Autowired
 	private CategoryController categoryController;
-	
-	@GetMapping
-	public List<CategoryDto> readCategoryAll(){
+
+	@RequestMapping(value = ID,method = RequestMethod.GET)
+	public CategoryDto readCategory(@PathVariable String id) throws CategoryCodeNotFoundException {
+		return this.categoryController.readCategory(id).orElseThrow(() -> new CategoryCodeNotFoundException(id));
+
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public List<CategoryDto> readCategoryAll() {
 		return this.categoryController.readCategoryAll();
 	}
 

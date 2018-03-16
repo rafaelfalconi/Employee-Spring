@@ -26,12 +26,12 @@ public class CategoryController {
 	}
 
 	public List<CategoryDto> readCategoryAll() {
-		List<Category> categoryList=this.categoryRepository.findAll();
-		List<CategoryDto> categoryListDto= new ArrayList<CategoryDto>();
+		List<Category> categoryList = this.categoryRepository.findAll();
+		List<CategoryDto> categoryListDto = new ArrayList<CategoryDto>();
 		for (Category category : categoryList) {
-			if( category.getTitle() == null) {
-				categoryListDto.add(new CategoryDto(category.getId(), category.getRank(), category.getTitle()));
-			}			
+
+			categoryListDto.add(new CategoryDto(category.getId(), category.getRank(), category.getTitle()));
+
 		}
 		return categoryListDto;
 	}

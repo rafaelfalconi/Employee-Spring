@@ -24,7 +24,8 @@
 
 		<deploy>${project.artifactId}-${project.version}</deploy>
 		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>		
+		<project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
 	</properties>
 
 	<dependencies>
