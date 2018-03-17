@@ -6,7 +6,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	CategoryResourceFunctionalTesting.class
+	CategoryResourceFunctionalTesting.class,
+	EmployeeResourceFunctionalTesting.class
 })
 public class AllRafelFunctionalTestion {
 
