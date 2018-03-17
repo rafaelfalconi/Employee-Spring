@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,10 +39,18 @@ public class CategoryResource {
 	public List<CategoryDto> readCategoryAll() {
 		return this.categoryController.readCategoryAll();
 	}
-	
+
 	@PostMapping
-	public void createCategory(@Valid @RequestBody CategoryDto categoryDto) throws CategoryFieldAlreadyExistException{
+	public void createCategory(@Valid @RequestBody CategoryDto categoryDto) throws CategoryFieldAlreadyExistException {
 		this.categoryController.createCategory(categoryDto);
+	}
+
+	@PutMapping(value = ID)
+	public void putCategory(@PathVariable String id, @Valid @RequestBody CategoryDto categoryDto)
+			throws CategoryCodeNotFoundException {
+		if (!this.categoryController.putCategory(id, categoryDto)) {
+			throw new CategoryCodeNotFoundException();
+		}
 	}
 
 }

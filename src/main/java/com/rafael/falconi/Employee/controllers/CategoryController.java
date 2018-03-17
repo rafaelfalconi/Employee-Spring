@@ -21,6 +21,15 @@ public class CategoryController {
 		this.categoryRepository.save(category);
 	}
 
+	public boolean putCategory(String id, CategoryDto categoryDto) {
+		Category category = this.categoryRepository.findById(id);
+		assert category != null;
+		category.setRank(categoryDto.getRank());
+		category.setTitle(categoryDto.getTitle());
+		this.categoryRepository.save(category);
+		return true;
+	}
+
 	public Optional<CategoryDto> readCategory(String id) {
 		Category categoryBD = this.categoryRepository.findById(id);
 		if (categoryBD == null) {

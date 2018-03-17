@@ -35,7 +35,15 @@ public class CategoryResourceFunctionalTesting {
 	public void testCreaCategory() {
 		restService.restBuilder().path(CategoryResource.CATEGORIES).body(this.categoryDto).post().build();
 	}
-
+	
+	@Test
+	public void testPutCategory() {
+		restService.restBuilder().path(CategoryResource.CATEGORIES).body(this.categoryDto).post().build();
+		this.categoryDto.setTitle("tittlePut");
+		restService.restBuilder().path(CategoryResource.CATEGORIES).path(CategoryResource.ID)
+		.expand(this.categoryDto.getId()).body(this.categoryDto).put().build();
+	}
+	
 	@Test
 	public void testCategoryRead() {
 		String json = restService.restBuilder(new RestBuilder<String>()).clazz(String.class)
