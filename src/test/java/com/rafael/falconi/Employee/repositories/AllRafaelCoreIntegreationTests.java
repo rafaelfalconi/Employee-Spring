@@ -10,7 +10,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    CategoryRepositoryIT.class
+    CategoryRepositoryIT.class,
+    EmployeeRepositoryIT.class
 })
 public class AllRafaelCoreIntegreationTests {
 

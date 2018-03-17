@@ -1,88 +1,108 @@
 package com.rafael.falconi.Employee.documents;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.rafael.falconi.Employee.documents.Category;
 
 @Document
 public class Employee {
-    @Id
-    private int id;
 
-    private String surname;
+	@Id
+	private String id;
 
-    @DateTimeFormat(iso = ISO.DATE)
-    private Calendar entry;
+	private String surname;
 
-    private Boolean active;
+	private Date entry;
 
-    @DBRef
-    private Category category;
+	private Boolean active;
 
-    public Employee() {
+	@DBRef
+	private Category category;
 
-    }
+	private Area area;
 
-    public Employee(String surname, Category category) {
-        this.category = category;
-        this.surname = surname;
-    }
+	public Area getArea() {
+		return area;
+	}
 
-    public Employee(int id, String surname, Category category) {
+	public void setArea(Area area) {
+		this.area = area;
+	}
 
-        this.category = category;
-        this.id = id;
-        this.surname = surname;
-    }
+	public Employee() {
+		this.entry = new Date();
+	}
 
-    public int getId() {
-        return id;
-    }
+	public Employee(String id, String surname, Boolean active, Category category, Area area) {
+		super();
+		this.id = id;
+		this.surname = surname;
+		this.active = active;
+		this.category = category;
+		this.area = area;
+	}
 
-    public String getSurname() {
-        return surname;
-    }
+	public Employee(String surname, Category category) {
+		this.category = category;
+		this.surname = surname;
+	}
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+	public Employee(String id, String surname, Category category, Area area) {
 
-    public Calendar getEntry() {
-        return entry;
-    }
+		this.category = category;
+		this.id = id;
+		this.surname = surname;
+		this.area = area;
+	}
 
-    public void setEntry(Calendar entry) {
-        this.entry = entry;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public Boolean getActive() {
-        return active;
-    }
+	public String getSurname() {
+		return surname;
+	}
 
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 
-    public Category getCategory() {
-        return category;
-    }
+	public Date getEntry() {
+		return entry;
+	}
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+	public void setEntry(Date entry) {
+		this.entry = entry;
+	}
 
-    public void getDate() {
-        // this.getEntry().setTime(date);
-    }
+	public Boolean getActive() {
+		return active;
+	}
 
-    @Override
-    public String toString() {
-        return "Employee [id=" + id + ", surname=" + surname + ", entry=" + entry + ", active=" + active + ", category=" + category + "]";
-    }
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public void getDate() {
+		// this.getEntry().setTime(date);
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", surname=" + surname + ", entry=" + entry + ", active=" + active + ", category="
+				+ category + ", area=" + area + "]";
+	}
+
 }
