@@ -4,7 +4,6 @@ package com.rafael.falconi.Employee.dtos;
 import java.util.Date;
 
 import com.rafael.falconi.Employee.documents.Area;
-import com.rafael.falconi.Employee.documents.Employee;
 
 
 public class EmployeeDto {
@@ -23,15 +22,6 @@ public class EmployeeDto {
 	
 	public EmployeeDto() {
 		
-	}
-	
-	public EmployeeDto(Employee employee) {
-		super();
-		this.id = employee.getId();
-		this.surname = employee.getSurname();
-		this.active = employee.getActive();
-		this.categorydto = new CategoryDto(employee.getCategory().getId(), employee.getCategory().getRank(), employee.getCategory().getTitle());
-		this.area = employee.getArea();
 	}
 
 	public EmployeeDto(String id, String surname,  Boolean active, CategoryDto categorydto, Area area) {
