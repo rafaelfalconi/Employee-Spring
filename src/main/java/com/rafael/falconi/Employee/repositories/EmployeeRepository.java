@@ -6,4 +6,5 @@ import com.rafael.falconi.Employee.documents.Employee;
 
 public interface EmployeeRepository extends MongoRepository<Employee, String> {
 
+	public Employee findById(String id);
 }

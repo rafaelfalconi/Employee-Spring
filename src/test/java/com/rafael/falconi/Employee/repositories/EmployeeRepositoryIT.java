@@ -1,7 +1,5 @@
 package com.rafael.falconi.Employee.repositories;
 
-import java.text.ParseException;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +20,18 @@ public class EmployeeRepositoryIT {
 	private EmployeeRepository employeeRepository;
 
 	@Test
-	public void findAny() throws ParseException {
+	public void findAny() {
 		Category category = this.categoryRepository.findById("1");
-		//System.out.println("category=====>"+category.getTitle());
 		Employee employee = new Employee("id", "surname", true, category, Area.Finansas);
 		this.employeeRepository.save(employee);
 		System.out.println("employee====>" + employeeRepository.findAll().toString());
 
+	}
+
+	@Test
+	public void findOne() {
+
+		System.out.println("employee===>" + this.employeeRepository.findById("id").toString());
 	}
 
 }

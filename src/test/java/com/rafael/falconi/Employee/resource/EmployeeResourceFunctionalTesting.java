@@ -32,14 +32,21 @@ public class EmployeeResourceFunctionalTesting {
 	@Before
 	public void before() {
 		this.categoryDto = new CategoryDto("18", 5546, "titl456e");
-		this.employeeDto = new EmployeeDto("1", "falconi",  true, this.categoryDto, Area.Marketing);
+		this.employeeDto = new EmployeeDto("1", "falconi", true, this.categoryDto, Area.Marketing);
 	}
-	
+
 	@Test
 	public void testEmployeeAll() {
-		String json= restService.restBuilder(new RestBuilder<String>()).clazz(String.class)
+		String json = restService.restBuilder(new RestBuilder<String>()).clazz(String.class)
 				.path(EmployeeResource.EMPLOYEES).get().build();
-		System.out.println("------>"+json);
+		System.out.println("------>" + json);
+	}
+
+	@Test
+	public void testEmployeeRead() {
+		String json = restService.restBuilder(new RestBuilder<String>()).path(EmployeeResource.EMPLOYEES)
+				.path(EmployeeResource.ID).expand("id").get().build();
+		System.out.println("------------>" + json);
 	}
 
 }
