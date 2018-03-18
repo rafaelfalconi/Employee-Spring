@@ -41,5 +41,12 @@ public class EmployeeResourceFunctionalTesting {
 				.path(EmployeeResource.EMPLOYEES).get().build();
 		System.out.println("------>"+json);
 	}
+	
+	@Test
+	public void testEmployeeRead() {
+		String json=restService.restBuilder(new RestBuilder<String>()).path(EmployeeResource.EMPLOYEES)
+				.path(EmployeeResource.ID).expand("id").get().build();
+		System.out.println("------------>" + json);
+	}
 
 }
