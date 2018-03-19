@@ -2,8 +2,12 @@ package com.rafael.falconi.Employee.resources;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +24,11 @@ public class EmployeeResource {
 	public static final String ID = "/{id}";
 	@Autowired
 	private EmployeeController employeeController;
+
+	@PostMapping
+	public void createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
+		this.employeeController.createEmployee(employeeDto);
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<EmployeeDto> readEmployeeAll() {
