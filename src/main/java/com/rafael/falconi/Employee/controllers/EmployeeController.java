@@ -38,6 +38,17 @@ public class EmployeeController {
 
 	}
 
+	public boolean putEmployee(String id, EmployeeDto employeeDto) {
+		Employee employee = this.employeeRepository.findById(id);
+		assert employee != null;
+		employee.setActive(employeeDto.getActive());
+		employee.setArea(employeeDto.getArea());
+		employee.setEntry(employeeDto.getEntry());
+		employee.setEntry(employeeDto.getEntry());
+		employee.setSurname(employeeDto.getSurname());
+		return true;
+	}
+
 	public List<EmployeeDto> readEmployeeAll() {
 		List<Employee> employeeList = this.employeeRepository.findAll();
 		List<EmployeeDto> employeeListDto = new ArrayList<EmployeeDto>();
