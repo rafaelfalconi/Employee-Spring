@@ -8,4 +8,6 @@ public interface CategoryRepository extends MongoRepository<Category, String> {
 
 	public Category findById(String id);
 
+	public Category findByTitle(String title);
+
 }

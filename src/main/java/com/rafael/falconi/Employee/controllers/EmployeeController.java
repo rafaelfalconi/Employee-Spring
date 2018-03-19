@@ -7,9 +7,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.rafael.falconi.Employee.documents.Category;
 import com.rafael.falconi.Employee.documents.Employee;
 import com.rafael.falconi.Employee.dtos.CategoryDto;
 import com.rafael.falconi.Employee.dtos.EmployeeDto;
+import com.rafael.falconi.Employee.repositories.CategoryRepository;
 import com.rafael.falconi.Employee.repositories.EmployeeRepository;
 
 @Controller
@@ -17,6 +19,24 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	@Autowired
+	private CategoryRepository categoryRepository;
+
+	public void createEmployee(EmployeeDto employeeDto) {
+		Category category = this.categoryRepository.findByTitle(employeeDto.getCategorydto().getTitle());
+		if (category == null) {
+			Category categoryNew = new Category(0, employeeDto.getCategorydto().getTitle());
+			this.categoryRepository.save(categoryNew);
+			Employee employee = new Employee(employeeDto.getId(), employeeDto.getSurname(), employeeDto.getActive(),
+					categoryNew, employeeDto.getArea());
+			this.employeeRepository.save(employee);
+		} else {
+			Employee employee = new Employee(employeeDto.getId(), employeeDto.getSurname(), employeeDto.getActive(),
+					category, employeeDto.getArea());
+			this.employeeRepository.save(employee);
+		}
+
+	}
 
 	public List<EmployeeDto> readEmployeeAll() {
 		List<Employee> employeeList = this.employeeRepository.findAll();

@@ -31,8 +31,13 @@ public class EmployeeResourceFunctionalTesting {
 
 	@Before
 	public void before() {
-		this.categoryDto = new CategoryDto("18", 5546, "titl456e");
-		this.employeeDto = new EmployeeDto("1", "falconi", true, this.categoryDto, Area.Marketing);
+		this.categoryDto = new CategoryDto("45", 5546, "rank4");
+		this.employeeDto = new EmployeeDto("1", "lhhlkhlk", true, this.categoryDto, Area.Marketing);
+	}
+
+	@Test
+	public void testCreateEmployee() {
+		restService.restBuilder().path(EmployeeResource.EMPLOYEES).body(this.employeeDto).post().build();
 	}
 
 	@Test
