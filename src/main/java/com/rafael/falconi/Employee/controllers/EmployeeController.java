@@ -1,6 +1,8 @@
 package com.rafael.falconi.Employee.controllers;
 
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,15 +26,19 @@ public class EmployeeController {
 
 	public void createEmployee(EmployeeDto employeeDto) {
 		Category category = this.categoryRepository.findByTitle(employeeDto.getCategorydto().getTitle());
+		Date date = new Date();
 		if (category == null) {
 			Category categoryNew = new Category(0, employeeDto.getCategorydto().getTitle());
 			this.categoryRepository.save(categoryNew);
+			
 			Employee employee = new Employee(employeeDto.getId(), employeeDto.getSurname(), employeeDto.getActive(),
 					categoryNew, employeeDto.getArea());
+			employee.setEntry(date);
 			this.employeeRepository.save(employee);
 		} else {
 			Employee employee = new Employee(employeeDto.getId(), employeeDto.getSurname(), employeeDto.getActive(),
 					category, employeeDto.getArea());
+			employee.setEntry(date);
 			this.employeeRepository.save(employee);
 		}
 
@@ -55,7 +61,7 @@ public class EmployeeController {
 		for (Employee employee : employeeList) {
 			CategoryDto category = new CategoryDto(employee.getCategory().getId(), employee.getCategory().getRank(),
 					employee.getCategory().getTitle());
-			employeeListDto.add(new EmployeeDto(employee.getId(), employee.getSurname(), employee.getActive(), category,
+			employeeListDto.add(new EmployeeDto(employee.getId(), employee.getSurname(),employee.getEntry(), employee.getActive(), category,
 					employee.getArea()));
 
 		}

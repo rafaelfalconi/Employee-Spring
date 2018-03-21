@@ -1,5 +1,9 @@
 package com.rafael.falconi.Employee.resource;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,9 +34,10 @@ public class EmployeeResourceFunctionalTesting {
 	private CategoryDto categoryDto;
 
 	@Before
-	public void before() {
+	public void before() throws ParseException {
 		this.categoryDto = new CategoryDto("45", 5546, "rank4");
-		this.employeeDto = new EmployeeDto("1", "1212", true, this.categoryDto, Area.Marketing);
+		Date dateFinish = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2018-12-31 11:59:59");
+		this.employeeDto = new EmployeeDto("1", "1212", dateFinish,true, this.categoryDto, Area.Marketing);
 	}
 
 	@Test
@@ -59,7 +64,7 @@ public class EmployeeResourceFunctionalTesting {
 	@Test
 	public void testEmployeeRead() {
 		String json = restService.restBuilder(new RestBuilder<String>()).path(EmployeeResource.EMPLOYEES)
-				.path(EmployeeResource.ID).expand("id").get().build();
+				.path(EmployeeResource.ID).expand("1").get().build();
 		System.out.println("------------>" + json);
 	}
 

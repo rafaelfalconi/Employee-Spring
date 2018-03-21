@@ -1,5 +1,6 @@
 package com.rafael.falconi.Employee.documents;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -101,7 +102,11 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", surname=" + surname + ", entry=" + entry + ", active=" + active + ", category="
+		String date = "null";
+
+		date = new SimpleDateFormat("dd-MMM-yyyy").format(entry.getTime());
+
+		return "Employee [id=" + id + ", surname=" + surname + ", entry=" + date + ", active=" + active + ", category="
 				+ category + ", area=" + area + "]";
 	}
 

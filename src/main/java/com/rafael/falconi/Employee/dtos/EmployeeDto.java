@@ -1,10 +1,15 @@
 package com.rafael.falconi.Employee.dtos;
 
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.rafael.falconi.Employee.documents.Area;
 import com.rafael.falconi.Employee.documents.Employee;
 
+@JsonInclude(Include.NON_NULL)
 public class EmployeeDto {
 
 	private String id;
@@ -15,6 +20,7 @@ public class EmployeeDto {
 
 	private Boolean active;
 
+	@JsonInclude(Include.NON_NULL)
 	private CategoryDto categorydto;
 
 	private Area area;
@@ -34,13 +40,14 @@ public class EmployeeDto {
 		this.area = employee.getArea();
 	}
 
-	public EmployeeDto(String id, String surname, Boolean active, CategoryDto categorydto, Area area) {
+	public EmployeeDto(String id, String surname, Date entry, Boolean active, CategoryDto categorydto, Area area) {
 		super();
 		this.id = id;
 		this.surname = surname;
 		this.active = active;
 		this.categorydto = categorydto;
 		this.area = area;
+		this.entry = entry;
 	}
 
 	public String getId() {
@@ -93,7 +100,9 @@ public class EmployeeDto {
 
 	@Override
 	public String toString() {
-		return "EmployeeDto [id=" + id + ", surname=" + surname + ", entry=" + entry + ", active=" + active
+		String date="";
+		date = new SimpleDateFormat("dd-MMM-yyyy").format(entry.getTime());
+		return "EmployeeDto [id=" + id + ", surname=" + surname + ", entry=" + date + ", active=" + active
 				+ ", category=" + categorydto.toString() + ", area=" + area + "]";
 	}
 
