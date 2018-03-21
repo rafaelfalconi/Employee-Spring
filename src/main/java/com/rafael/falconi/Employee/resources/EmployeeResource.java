@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,14 @@ public class EmployeeResource {
 	public static final String ID = "/{id}";
 	@Autowired
 	private EmployeeController employeeController;
+
+	@PutMapping(value = ID)
+	public void putEmployee(@PathVariable String id, @Valid @RequestBody EmployeeDto employeeDto)
+			throws EmployeeCodeNotFoundException {
+		if (!this.employeeController.putEmployee(id, employeeDto)) {
+			throw new EmployeeCodeNotFoundException();
+		}
+	}
 
 	@PostMapping
 	public void createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
